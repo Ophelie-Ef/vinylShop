@@ -14,6 +14,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+// User crée : pikachu@pokemon.fr, Pikachu, pikapika, pikapika
+
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
@@ -25,6 +27,10 @@ class RegistrationController extends AbstractController
         // avant d'executer quoique ce soit, je compare mes deux mots de passe
         if ($form->isSubmitted() && $form->isValid()) {
             if ($form->get('plainPassword')->getData() === $form->get('confirmPassword')->getData()) {
+
+                $created = new \DateTimeImmutable();
+                // dd($created);
+                $user->setCreatedAt($created);
                 // si ils sont identiques, je poursuis l'enregistrement dans la BDD
                 // encode the plain password
                 $user->setPassword(
