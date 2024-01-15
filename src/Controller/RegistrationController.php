@@ -15,6 +15,7 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 // User crée : pikachu@pokemon.fr, Pikachu, pikapika, pikapika
+// User crée : john.doe@example.com, JohnDoe, noname, noname
 
 class RegistrationController extends AbstractController
 {
@@ -35,7 +36,7 @@ class RegistrationController extends AbstractController
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
-                    $form->get('plainPassword')->getData()
+                    $form->get('password')->getData()
                 )
             );
 
