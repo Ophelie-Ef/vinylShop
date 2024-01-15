@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img,
+input {
+    width: 100%
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+#navMenu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style-type: none;
+}
+
+#navMenu li {
+    position: relative;
+}
+
+.subMenu {
+    padding: 0.25rem;
+    list-style-type: none;
+    position: absolute;
+    border: 1px solid chartreuse;
+    top: 3rem;
+    background-color: white;
+    overflow: hidden;
+    transition: .4s all;
+}
+
+.hideSubMenu {
+    max-height: 0;
+}
+
+.showSubMenu {
+    max-height: 500px;
+}
