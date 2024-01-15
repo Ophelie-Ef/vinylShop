@@ -26,35 +26,28 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
         // avant d'executer quoique ce soit, je compare mes deux mots de passe
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($form->get('plainPassword')->getData() === $form->get('confirmPassword')->getData()) {
 
-                $created = new \DateTimeImmutable();
-                // dd($created);
-                $user->setCreatedAt($created);
-                // si ils sont identiques, je poursuis l'enregistrement dans la BDD
-                // encode the plain password
-                $user->setPassword(
-                    $userPasswordHasher->hashPassword(
-                        $user,
-                        $form->get('plainPassword')->getData()
-                    )
-                );
-
-                $entityManager->persist($user);
-                $entityManager->flush();
-                // do anything else you need here, like send an email
-
-                return $userAuthenticator->authenticateUser(
+            $created = new \DateTimeImmutable();
+            // dd($created);
+            $user->setCreatedAt($created);
+            // si ils sont identiques, je poursuis l'enregistrement dans la BDD
+            // encode the plain password
+            $user->setPassword(
+                $userPasswordHasher->hashPassword(
                     $user,
-                    $authenticator,
-                    $request
-                );
-            } else {
-                return $this->render('registration/register.html.twig', [
-                    'registrationForm' => $form->createView(),
-                    'passError' => 'Les mots de passe ne sont pas identiques'
-                ]);
-            }
+                    $form->get('plainPassword')->getData()
+                )
+            );
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+            // do anything else you need here, like send an email
+
+            return $userAuthenticator->authenticateUser(
+                $user,
+                $authenticator,
+                $request
+            );
         }
 
         return $this->render('registration/register.html.twig', [
