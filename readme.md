@@ -36,9 +36,6 @@ ou
 ## ajout du registration form
 
 - ```php bin/console make:registration-form```
--> User
--> no
--> yes
 
 ## création de la BDD
 
