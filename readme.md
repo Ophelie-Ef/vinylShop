@@ -181,7 +181,6 @@ ou
 
 
 ## Installation du reset password UPDATE ne fonctionne pas en local ou définir une adresse mail dans le php.ini
- - ```composer require symfonycasts/reset-password-bundle```
  - ```php bin/console make:reset-password```
 
  - dans le .env il faudra ensuite configurer le MAILER_DSN=
